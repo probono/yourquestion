@@ -4,8 +4,8 @@ class Question < ActiveRecord::Base
   
   has_one :answer, :dependent => :destroy
   
-  named_scope :sent, :conditions => ['sent_at <> ? ', nil]
-  named_scope :answered, :conditions => ['answered_at <> ? ', nil]
+  named_scope :sent, :conditions => ['sent_at is not ? ', nil]
+  named_scope :answered, :conditions => ['answered_at is not ? ', nil]
   
   def sent?
     self.sent_at != nil
