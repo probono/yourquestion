@@ -1,0 +1,92 @@
+/*	
+	Bruno Garcia Echegaray
+	Oxxigeno Networks
+	julio del 2010
+*/
+
+
+/*reset*/
+body {background-color:#eee;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif; color:#333; font-size:95%;margin:0; padding:0}
+a {color:#0099CC}
+a img {border:none}
+li {list-style-type:none;}
+
+h1, h2, h3 {font-family:Geneva, Verdana, sans-serif; margin:0; padding:0}
+h1 {font-size:180%;}
+h2 {font-size:145%;}
+
+/*commons*/
+.toLeft {float:left}
+.toRight {float:right}
+.clear {clear:both}
+
+/*header*/
+.header p {margin:0}
+
+.header .intro { background-color:#333; font-size:105%; color:#fff;}
+.header .intro p {padding:10px 0;}
+
+.header .form {background:url(/images/bg/form.gif) repeat-x 0 0; border-bottom:solid 1px #8BB84A; padding:10px 0; margin-bottom:50px}
+.header .form label {display:block; padding-bottom:10px}
+.header .form input {font-size:95%;border:none; }
+.header .form .search {padding:5px 40px 4px 5px}
+.header .form .submit {background-color:#333; color:#fff; font-weight:bold; font-size:105%; padding:2px 5px}
+
+/*frame*/
+.frame {width:810px; margin:0 auto}
+
+
+/*question-answer*/
+.question-answer .column-01 {width:498px; padding:0 20px 20px 20px; margin:30px 0; border-right:solid 1px #dedede}
+.question-answer .column-02 {width:208px; padding:0 30px; margin:30px 0;}
+
+.question-answer .section-01 {border-radius:0.4em 0.4em 0 0;-moz-border-radius:0.4em 0.4em 0 0;background-color:#fff;border-top:solid 1px #dedede;border-left:solid 1px #dedede;border-right:solid 1px #dedede;}
+.question-answer .section-02 {border-radius:0 0 0.4em 0.4em;-moz-border-radius:0 0 0.4em 0.4em;background-color:#EBF4DC;border:solid 1px #dedede;}
+
+.question-tags {font-size:62.5%}
+.question-tags ul {margin:30px 0 0 0; padding:0}
+.question-tags ul li {float:left;margin-right:10px;}
+.question-tags ul li a {color:#999; text-decoration:none; background:#E5E5E5 url(/images/bg/tags.gif) no-repeat 0 0; padding:1px 10px 2px 17px; display:block}
+
+/*people*/
+.people {font-size:80%}
+.social-network {margin:0; padding:0}
+.social-network li { float:left;padding:0 20px 12px 20px;}
+.facebook {background:url(/images/icons/facebook.gif) no-repeat 0 0}
+.twitter {background:url(/images/icons/twitter.gif) no-repeat 0 0}
+.email {background:url(/images/icons/email.gif) no-repeat 0 0;}
+
+.number-people {margin:0 0 30px 0}
+.number-people span {display:block; font-size:180% !important; color:#FF3366; font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif}
+
+.answer {background:url(/images/bg/answer.gif) no-repeat 20px 0; padding-top:10px !important; margin-top:-1px !important}
+.answer .days-since { margin-top:0; font-size:80%}
+.answer .logo-admin {width:44px; margin-top:0; padding-right:10px}
+
+.quotes-top { background:url(/images/bg/quotes-top.gif) no-repeat 0 0; padding:5px 0 5px 20px; margin:0 0 0 50px}
+.quotes-bottom { background:url(/images/bg/quotes-bottom.gif) no-repeat 100% 100%}
+
+/*answer-statistics*/
+.answer-statistics {background:url(/images/bg/answer-statistics.gif) no-repeat 0 0; font-size:80%; margin-left:30px; padding:10px 0 20px 60px; color:#a0a0a0}
+.answer-statistics p {margin:0}
+.answer-statistics a {color:#a0a0a0}
+.answer-statistics span {font-weight:bold}
+
+/*site-statistics*/
+.site-statistics {margin-top:20px; border-bottom:solid 1px #000;}
+.site-statistics ul {margin:0; padding:0}
+.site-statistics li { float:left; padding:20px 0; width:100px; text-shadow: #000 1px 1px}
+.site-statistics span {font-size:220%; display:block }
+
+/*footer*/
+.footer {background-color:#333; color:#666; margin-top:50px; padding-bottom:20px}
+.footer a {color:#666}
+
+.footer .wwww, 
+.footer .more-info {font-size:62.5%; width:50%;text-transform:uppercase; border-top:solid 1px #666; padding-top:20px}
+
+.footer .wwww ul {margin:0; padding:0}
+.footer .wwww li { display:inline}
+
+.footer .more-info {text-align:right}
+.footer .more-info li {display:inline; padding-left:10px}

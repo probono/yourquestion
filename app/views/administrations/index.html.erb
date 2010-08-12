@@ -1,0 +1,25 @@
+<h1>Listing administrations</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administrations.each do |administration| %>
+  <tr>
+    <td><%= administration.name %></td>
+    <td><%= administration.description %></td>
+    <td><%= link_to 'Show', administration %></td>
+    <td><%= link_to 'Edit', edit_administration_path(administration) %></td>
+    <td><%= link_to 'Destroy', administration, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Administration', new_administration_path %>

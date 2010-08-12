@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @administration.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @administration.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_administration_path(@administration) %> |
+<%= link_to 'Back', administrations_path %>
