@@ -1,8 +1,7 @@
 class QuestionsController < ApplicationController
-  # GET /questions
-  # GET /questions.xml
+
   def index
-    @questions = Question.all
+    @questions = Question.sent
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +9,13 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # GET /questions/1
-  # GET /questions/1.xml
   def show
-    @question = Question.find(params[:id])
+    @question = Question.sent.find(params[:id])
+    
+    redirect_to :back unless @question
+    
+    @vote = @question.answer.votes.find_by_request_hash(request_hash) if @question.answer
+    @me_too = @question.me_toos.find_by_request_hash(request_hash)  
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,8 +23,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # GET /questions/new
-  # GET /questions/new.xml
+
   def new
     @question = Question.new
 
@@ -32,13 +33,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # GET /questions/1/edit
-  def edit
-    @question = Question.find(params[:id])
-  end
-
-  # POST /questions
-  # POST /questions.xml
   def create
     @question = Question.new(params[:question])
 
@@ -53,31 +47,11 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # PUT /questions/1
-  # PUT /questions/1.xml
-  def update
-    @question = Question.find(params[:id])
-
-    respond_to do |format|
-      if @question.update_attributes(params[:question])
-        format.html { redirect_to(@question, :notice => 'Question was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }
-      end
-    end
+  def me_too
+    @question = Question.pending.find(params[:id])
+    @question.me_too!(request, request_hash) if @question
+    redirect_to :back
   end
 
-  # DELETE /questions/1
-  # DELETE /questions/1.xml
-  def destroy
-    @question = Question.find(params[:id])
-    @question.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(questions_url) }
-      format.xml  { head :ok }
-    end
-  end
+  
 end

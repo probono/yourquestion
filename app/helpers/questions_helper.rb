@@ -12,5 +12,9 @@ module QuestionsHelper
     distance_of_time_in_words(question.sent_at, question.answered_at) if question.answered?
   end
   
+  def average_response_time
+    Question.answered.empty? ? 0 : Question.answered.sum(:days_to_answer) / Question.answered.size
+  end
+  
   
 end

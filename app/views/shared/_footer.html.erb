@@ -4,7 +4,7 @@
       <ul>
         <li><span><%= Question.sent.count %></span> preguntas enviadas</li>
         <li><span><%= Question.answered.count %></span> respuestas</li>
-        <li><span>12,1</span> días tiempo medio de respuesta</li>
+        <li><span><%= average_response_time %></span> días tiempo medio de respuesta</li>
         <li><span><%= Administration.count %></span> administraciones públicas</li>
       </ul>
       <div class="clear"></div>

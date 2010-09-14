@@ -1,4 +1,9 @@
 #############################################
+#    Some seed data
+#############################################
+DAYS_AGO = [10, 30, 45, 60, 20, 120]
+
+#############################################
 #    Sample administrations
 #############################################
 unless RAILS_ENV == "production"
@@ -22,23 +27,27 @@ end
 #############################################
 unless RAILS_ENV == "production"
   
-  questions = ['¿Cuantas personas fueron expulsadas de España en el último año?',
-               '¿Cuántos coches oficiales hay en el Ayuntamiento de Madrid y cuánto cuestan?',
-               '¿Cómo reparte la SGAE el dinero del canon?',
-               '¿Cuánto gasta su departamento en software?',
-               '¿Cuántas fuentes de datos tiene liberada su departamento?',
-               '¿Que proporción dedica su administración a personal, a subcontratación y a obras?',
-               '¿Cuantos aeropuertos hay con menos de 20 vuelos diarios y cuanto cuesta cada uno?']
+  questions = [
+    {:text => '¿Cuantas personas fueron expulsadas de España en el último año?', :tags => 'derechos humanos'},
+    {:text => '¿Cuántos coches oficiales hay en el Ayuntamiento de Madrid y cuánto cuestan?', :tags => 'gasto, madrid'},
+    {:text => '¿Cómo reparte la SGAE el dinero del canon?', :tags => 'cultura, opendata'},
+    {:text => '¿Cuánto gasta su departamento en software?', :tags => 'gasto'},
+    {:text => '¿Cuántas fuentes de datos tiene liberada su departamento?', :tags => 'opendata'},
+    {:text => '¿Que proporción dedica su administración a personal, a subcontratación y a obras?', :tags => 'gasto, obras'},
+    {:text => '¿Cuantos aeropuertos hay con menos de 20 vuelos diarios y cuanto cuesta cada uno?', :tags => 'gasto'}
+  ]
 
-  questions.each do |t|
-    q = Question.create!(:title => t, :body => "blah, blah, blah #{t}, blah, blah, blah")
+  questions.each do |hash|
+    q = Question.create!(:title => hash[:text], 
+                         :tag_list => hash[:tags],
+                         :body => "blah, blah, blah, #{hash[:text]}, blah, blah, blah, #{hash[:text]}, blah, blah, blah")
     if (Time.now.to_i % 2 == 0)
       depts = Department.all.sort_by {rand}
       q.department = depts.first
       q.administration = q.department.administration
-      q.sent!(Time.now - 1.days)
+      q.sent!(Time.now - DAYS_AGO.sort_by{rand}.first.days)
       if (Time.now.to_i % 3 == 0)
-        q.answer = Answer.new(:body => "Respesta a #{t}", :question => q)
+        q.answer = Answer.new(:body => "Respuesta a #{hash[:text]}, blah, blah, blah, #{hash[:text]}", :question => q)
         q.answered!
       end
     end

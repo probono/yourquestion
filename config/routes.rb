@@ -1,9 +1,13 @@
 Yourquestion::Application.routes.draw do |map|
 #  resources :answers
 
-  resources :questions do
+  match 'questions/:question_id/answer/:id/ok' => 'answers#vote', :defaults => { :vote => '1' }, :as => :complete_answer
+  match 'questions/:question_id/answer/:id/ough' => 'answers#vote', :defaults => { :vote => nil }, :as => :uncomplete_answer
+  
+  resources :questions, :only => [:new, :create, :show] do
     get :pending, :on => :collection
     get :answered, :on => :collection
+    get :me_too, :on => :member
   end
 
   resources :departments

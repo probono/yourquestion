@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  answer: 
+  user_agent: MyString
+  ip: MyString
+  referer: MyString
+  session_id: MyString
+  vote_hash: MyString
+  positive: false
+
+two:
+  answer: 
+  user_agent: MyString
+  ip: MyString
+  referer: MyString
+  session_id: MyString
+  vote_hash: MyString
+  positive: false

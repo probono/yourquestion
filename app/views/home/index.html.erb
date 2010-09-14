@@ -5,7 +5,7 @@
       <div class="column">
         <% last_pending_questions.each do |q|%>
           <h3><%= link_to q.title, q %></h3>
-          <p>234 personas quieren saberla, <a href="#">manifiesta tu interés!</a></p>
+          <p>234 personas quieren saberla, <%= link_to "¡manifiesta tu interés!", q %></p>
         <% end %>
       </div>
       <p class="more-info"><%= link_to "ver todas las preguntas sin contestar", pending_questions_path %></p>
@@ -27,21 +27,10 @@
     <div class="frame">
     <h2 class="accessible">Categorías</h2>
       <ul>
-        <li class="no-bg"><a href="#">Ciencia</a></li>
-        <li><a href="#">Contratación pública</a></li>
-        <li><a href="#">Cultura</a></li>
-        <li><a href="#">Deporte</a></li>
-        <li><a href="#">Economía</a></li>
-        <li><a href="#">Educación</a></li>
-        <li><a href="#">Estadística</a></li>
-        <li><a href="#">Justicia</a></li>
-        <li><a href="#">Mapas</a></li>
-        <li><a href="#">Medio Ambiente</a></li>
-        <li><a href="#">Información local</a></li>
-        <li><a href="#">Metereología</a></li>
-        <li><a href="#">Política</a></li>
-        <li><a href="#">Tráfico y transporte</a></li>
-        <li><a href="#">Turismo</a></li>
+        <% tags = ActsAsTaggableOn::Tag.all %>
+        <% tags.each do |t|%>
+          <li <%= "class=\"no-bg\"".html_safe if t == tags.first %> ><%= link_to t.name, "#" %></li>
+        <% end %>
       </ul>
     </div>
   </div>

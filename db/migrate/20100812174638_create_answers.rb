@@ -6,7 +6,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.text :email
       t.string :name
       t.string :email
-
+      t.integer :votes_count, :default => 0
       t.timestamps
     end
   end

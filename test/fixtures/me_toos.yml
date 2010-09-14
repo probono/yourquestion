@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  question: 
+  user_agent: MyString
+  ip: MyString
+  referer: MyString
+  session_id: MyString
+  me_too_hash: MyString
+
+two:
+  question: 
+  user_agent: MyString
+  ip: MyString
+  referer: MyString
+  session_id: MyString
+  me_too_hash: MyString

@@ -9,6 +9,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.references :department
       t.string :name
       t.string :email
+      t.integer :me_toos_count, :default => 0
+      t.integer :days_to_answer
       t.timestamps
     end
   end

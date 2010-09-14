@@ -10,16 +10,18 @@
     <p><%= @question.body %></p>
     <div class="question-tags">
       <ul>
-        <li><a href="#">Presupuestos</a></li>
-        <li><a href="#">Coches</a></li>
-        <li><a href="#">Chofers</a></li>
+        <% @question.tags.each do |t|%>
+          <li><%= link_to t.name, "#"%></li>
+        <% end %>
       </ul>
     </div>
   </div>
   <!--/question-->
   <div class="people column-02 toRight">
-    <p class="number-people"><em><span>1.312</span> personas</em> manifestaron su interés</p>
-    <p class="tambien-quiero"><a href="#" title="también quiero saberla">también quiero saberla</a></p>
+    <p class="number-people"><em><span><%= @question.me_toos.size %></span> personas</em> manifestaron su interés</p>
+    <% unless @question.answered? || @me_too %>
+    <p class="tambien-quiero"><%= link_to "también quiero saberlo", me_too_question_path(@question), :title => "también quiero saberlo" %></p>
+    <% end %>
     <div class="social-network">
         <p>Difunde la pregunta</p>
         <ul>
@@ -34,12 +36,12 @@
 </div>
 <!--/section-01-->
 <% if @question.answered? %>
-  <div class="section-02">
+  <div class="section-02 answer-yes">
     <div class="answer">
       <div class="column-01 toLeft">
         <p class="logo-admin toLeft"><%= administration_logo(@question.administration) %></p>
         <div class="title-answer toLeft">
-          <h2>Respuesta del <%= administration_link(@question.administration) %></h2>
+          <h2>Respuesta de <%= administration_link(@question.administration) %></h2>
   	      <p class="days-since"><%= time_ago_in_words(@question.answered_at)%></p>
         </div>
         <div class="clear"></div>
@@ -49,26 +51,45 @@
           </div>
         </div>
       </div>
-      <div class="feedback column-02 toRight">
-        <p>¿Cómo ves la respuesta?</p>
-        <ul>
-          <li><a href="#" title="Completa">Completa</a></li>
-          <li><a href="#" title="Incompleta">Incompleta</a></li>
-        </ul>
-        <p>Coincides con el 67% de los usuarios que han votado!</p>
-      </div>
+        <div class="column-02 toRight">
+          <div class="feedback">
+            <p>¿Cómo ves la respuesta?</p>
+            <% if @vote %>
+              <ul>
+                <li class="completa <%= "desactivada" unless @vote.positive %>"><%= link_to "Completa", complete_answer_path(@question, @question.answer), :title => "Completa"%></li>
+                <li class="incompleta <%= "desactivada" if @vote.positive %>"><%= link_to "Incompleta", uncomplete_answer_path(@question, @question.answer), :title => "Incompleta"%></li>
+              </ul>
+            <% else %>
+              <ul>
+                <li class="completa"><%= link_to "Completa", complete_answer_path(@question, @question.answer), :title => "Completa"%></li>
+                <li class="incompleta"><%= link_to "Incompleta", uncomplete_answer_path(@question, @question.answer), :title => "Incompleta"%></li>
+              </ul>
+            <% end %>
+            <div class="clear"></div>
+            <% if @vote %>
+              <div class="coincides">
+                <p>Coincides con el <strong><%= coincidence_rate(@question.answer, @vote) %>%</strong> de los usuarios que han votado!</p>
+              </div>
+            <% end %>
+            <% if @question.answer.voted? %>
+              <!--http://code.google.com/apis/chart/docs/gallery/pie_charts.html-->
+              <p class="chart-api-google"><%= google_chart(@question.answer)%></p>
+            <% end %>
+          </div>
+        </div>
       <!--/feedback-->
       <div class="clear"></div>
     </div>
     <!--/answer-->
   </div>
   <!--/section-02-->
+  
 <% else %>
   <div class="section-02 answer-no">
     <div class="answer">
       <div class="column-01">
         <h2>Aún no hay respuesta</h2>
-        <p>y la pregunta fué formulada <strong><%= time_ago_in_words(@question.sent_at)%></strong>, <a href="#" title="¡manifiesta tu interés!">¡manifiesta tu interés!</a></p>
+        <p>y la pregunta fue formulada <strong>hace <%= time_ago_in_words(@question.sent_at)%></strong>, <a href="#" title="¡manifiesta tu interés!">¡manifiesta tu interés!</a></p>
       </div>
     </div>
     <!--/answer-no-->
@@ -78,8 +99,8 @@
 
 <div class="answer-statistics">
 <p class="accessible">Estadística de <%= administration_link(@question.administration) %>:</p>
-  <p>El tiempo medio de respuesta de <%= administration_link(@question.administration) %> es de <span>17,2 días</span></p>
-  <p>La media general está en <span>5,9 días</span></p>
+  <p>El tiempo medio de respuesta de <%= administration_link(@question.administration) %> es de <span><%= @question.administration.average_response_time %> días</span></p>
+  <p>La media general está en <span><%= average_response_time %> días</span></p>
 </div>
 
 
