@@ -1,0 +1,36 @@
+<div class="send-question">
+  <h2>Preguntas</h2>
+  <p>
+    Filtrar preguntas por: 
+  </p>
+  <p>
+    <%= link_to 'New Question', new_admin_question_path %>
+  </p>
+</div>
+
+<div class="results-available">
+  
+  <% @questions.each do |question| %>
+    <h2 class="no-border"><%= link_to question.title,  admin_question_path(question) %></h2>
+    <p><% administration_logo(question.administration)%> 
+       Creada el <strong><%= question.creation_date %></strong>
+       <% if question.sent? %>. Enviada el <strong><%= question.sent_date %></strong><% end %>
+       <% if question.answered? %>. Contestada el <strong><%= question.answered_date %></strong><% end %>
+    </p>
+  <% end %>
+
+</div>
+<div class="page-navigation">
+  <p>21 Resultados disponibles, viendo del 1 al 10</p>
+  <ul>
+    <li><a href="#">Anterior</a></li>
+    <li><a href="#">1</a></li>
+    <li class="active"><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">Siguiente</a></li>
+  </ul>
+  <div class="clear"></div>
+</div>
+
+
+

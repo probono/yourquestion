@@ -1,4 +1,4 @@
-<div class="content frame">
+<td><%= link_to 'Destroy', admin_question_path(@question), :confirm => 'Are you sure?', :method => :delete %></td>
 
 
 <div class="section-01">
@@ -101,7 +101,4 @@
 <p class="accessible">Estadística de <%= administration_link(@question.administration) %>:</p>
   <p>El tiempo medio de respuesta de <%= administration_link(@question.administration) %> es de <span><%= @question.administration.average_response_time %> días</span></p>
   <p>La media general está en <span><%= average_response_time %> días</span></p>
-</div>
-
-
 </div>

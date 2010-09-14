@@ -31,6 +31,16 @@ class Question < ActiveRecord::Base
     self.answered_at != nil
   end
   
+  def answered_date(format=:short)
+    I18n.l(answered_at, :format => format) if answered_at
+  end
+  def sent_date(format=:short)
+    I18n.l(sent_at, :format => format) if sent_at
+  end
+  def creation_date(format=:short)
+    I18n.l(created_at, :format => format)
+  end
+  
   def me_too!(request, request_hash)    
     self.me_toos.create!(
       :session_id => request.session_options[:id], 

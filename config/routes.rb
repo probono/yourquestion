@@ -4,15 +4,26 @@ Yourquestion::Application.routes.draw do |map|
   match 'questions/:question_id/answer/:id/ok' => 'answers#vote', :defaults => { :vote => '1' }, :as => :complete_answer
   match 'questions/:question_id/answer/:id/ough' => 'answers#vote', :defaults => { :vote => nil }, :as => :uncomplete_answer
   
+  match 'questions/tag/:tag' => 'questions#by_tag', :as => :questions_by_tag
+  
   resources :questions, :only => [:new, :create, :show] do
     get :pending, :on => :collection
     get :answered, :on => :collection
     get :me_too, :on => :member
   end
 
-  resources :departments
+  resources :departments, :only => [:show]
 
-  resources :administrations
+  resources :administrations, :only => [:show]
+  
+  namespace :admin do
+    resources :questions do 
+      resources :answers
+    end
+    resources :administrations do 
+      resources :departments
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

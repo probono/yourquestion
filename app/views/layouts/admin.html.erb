@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><%="#{@question.title} -" if @question %> 100 preguntas</title>
+<meta name="description" content="<%= @question ? @question.body : "Campaña de las 100 preguntas a la administración" %>">
+<meta name="keywords" content="" />
+<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/100preguntas.css"/>
+
+<%= javascript_include_tag :defaults %>
+</head>
+
+<body>
+<div class="container  search-results">
+  <div class="header">
+    <div class="intro">
+      <div class="frame">
+        <p><%= link_to "Pregunta a la administración", admin_questions_path %></p>
+      </div>
+    </div>
+    <div class="form">
+      <div class="frame">
+          <p>
+            <label for="search">Administración</label>
+          </p>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <!--/header-->
+  <div class="content frame">
+    <p id="notice"><%= notice %></p>
+    <%= yield %>
+  </div>
+  <!--/content-->
+  <%= render :partial => '/shared/footer' %>
+</div>
+<!--/wrapper-->
+</body>
+</html>
