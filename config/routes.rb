@@ -1,7 +1,10 @@
 Yourquestion::Application.routes.draw do |map|
-  resources :answers
+#  resources :answers
 
-  resources :questions
+  resources :questions do
+    get :pending, :on => :collection
+    get :answered, :on => :collection
+  end
 
   resources :departments
 
@@ -56,7 +59,7 @@ Yourquestion::Application.routes.draw do |map|
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "questions#index"
+  root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 

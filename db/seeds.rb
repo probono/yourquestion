@@ -27,7 +27,7 @@ unless RAILS_ENV == "production"
                '¿Cómo reparte la SGAE el dinero del canon?',
                '¿Cuánto gasta su departamento en software?',
                '¿Cuántas fuentes de datos tiene liberada su departamento?',
-               '¿Que proporción dedica su administración a personal, a subcotnratación y a obras?',
+               '¿Que proporción dedica su administración a personal, a subcontratación y a obras?',
                '¿Cuantos aeropuertos hay con menos de 20 vuelos diarios y cuanto cuesta cada uno?']
 
   questions.each do |t|
@@ -36,7 +36,7 @@ unless RAILS_ENV == "production"
       depts = Department.all.sort_by {rand}
       q.department = depts.first
       q.administration = q.department.administration
-      q.sent!
+      q.sent!(Time.now - 1.days)
       if (Time.now.to_i % 3 == 0)
         q.answer = Answer.new(:body => "Respesta a #{t}", :question => q)
         q.answered!
