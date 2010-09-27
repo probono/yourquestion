@@ -5,7 +5,7 @@
       <div class="column">
         <% last_pending_questions.each do |q|%>
           <h3><%= link_to q.title, q %></h3>
-          <p>234 personas quieren saberla, <%= link_to "¡manifiesta tu interés!", q %></p>
+          <p><%= q.me_toos.size %> personas quieren saberla, <%= link_to "¡manifiesta tu interés!", q %></p>
         <% end %>
       </div>
       <p class="more-info"><%= link_to "ver todas las preguntas sin contestar", pending_questions_path %></p>
@@ -29,7 +29,7 @@
       <ul>
         <% tags = ActsAsTaggableOn::Tag.all %>
         <% tags.each do |t|%>
-          <li <%= "class=\"no-bg\"".html_safe if t == tags.first %> ><%= link_to t.name, "#" %></li>
+          <li <%= "class=\"no-bg\"".html_safe if t == tags.first %> ><%= link_to t.name, questions_by_tag_path(t.name) %></li>
         <% end %>
       </ul>
     </div>

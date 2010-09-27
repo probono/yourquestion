@@ -1,3 +1,16 @@
+# == Schema Info
+#
+# Table name: answers
+#
+#  id          :integer         not null, primary key
+#  question_id :integer
+#  body        :text
+#  email       :text(255)
+#  name        :string(255)
+#  votes_count :integer         default(0)
+#  created_at  :datetime
+#  updated_at  :datetime
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:

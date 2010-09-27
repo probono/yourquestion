@@ -2,7 +2,10 @@ module ApplicationHelper
   
   SECTION_CLASSES = {
     'home' => 'home',
-    'questions' => 'question-answer'
+    'questions' => 'question-answer',
+    'administrations' => 'question-answer',
+    'departments' => 'question-answer',
+    'search' => 'search-results'
   }
   
   def section_class

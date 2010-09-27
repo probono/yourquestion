@@ -1,6 +1,25 @@
+# == Schema Info
+#
+# Table name: questions
+#
+#  id                :integer         not null, primary key
+#  administration_id :integer
+#  department_id     :integer
+#  body              :text
+#  days_to_answer    :integer
+#  email             :string(255)
+#  me_toos_count     :integer         default(0)
+#  name              :string(255)
+#  title             :string(255)
+#  answered_at       :datetime
+#  created_at        :datetime
+#  sent_at           :datetime
+#  updated_at        :datetime
+
 class Question < ActiveRecord::Base
   
   acts_as_taggable
+  has_friendly_id :title, :use_slug => true
   
   belongs_to :administration
   belongs_to :department
@@ -11,7 +30,7 @@ class Question < ActiveRecord::Base
   named_scope :pending, :conditions => ['sent_at is not ? and answered_at is ? ', nil, nil]
   named_scope :sent, :conditions => ['sent_at is not ? ', nil]
   named_scope :answered, :conditions => ['answered_at is not ? ', nil]
-  
+    
   def sent?
     self.sent_at != nil
   end

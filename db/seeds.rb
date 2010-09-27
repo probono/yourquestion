@@ -51,6 +51,7 @@ unless RAILS_ENV == "production"
         q.answered!
       end
     end
+    puts "Crated question: #{q.title} (sent: #{q.sent?}, answered: #{q.answered?})"
     sleep 1
   end
   

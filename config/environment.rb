@@ -5,3 +5,6 @@ I18n.default_locale = :es
 
 # Initialize the rails application
 Yourquestion::Application.initialize!
+
+WillPaginate::ViewHelpers.pagination_options[:renderer] = 'PaginationListLinkRenderer'
+

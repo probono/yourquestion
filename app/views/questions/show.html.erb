@@ -5,13 +5,13 @@
   <div class="question column-01 toLeft">
     <h1><%= @question.title %></h1>
     <% if @question.sent? %>
-    <p>Pregunta enviada hace <%= time_ago_in_words(@question.sent_at)%> al <%= administration_link(@question.administration) if @question.administration %> - <%= link_to @question.department.name, "#", :title => "Preguntas a #{@question.department.name}" if @question.department %></p>
+    <p>Pregunta enviada hace <%= time_ago_in_words(@question.sent_at)%> al <%= administration_link(@question.administration) if @question.administration %> - <%= department_link(@question.department) if @question.department %></p>
     <% end %>
     <p><%= @question.body %></p>
     <div class="question-tags">
       <ul>
         <% @question.tags.each do |t|%>
-          <li><%= link_to t.name, "#"%></li>
+          <li><%= link_to t.name, questions_by_tag_path(t.name)%></li>
         <% end %>
       </ul>
     </div>
@@ -66,12 +66,14 @@
               </ul>
             <% end %>
             <div class="clear"></div>
-              <div class="coincides">
-                <% if @vote %>
-                <p>Coincides con el <strong><%= coincidence_rate(@question.answer, @vote) %>%</strong> de los usuarios que han votado!</p>
-                <% end %>
-              </div>
             <% if @question.answer.voted? %>
+              <div class="coincides">
+              <% if @vote %>
+                <p>¡Coincides con el <strong><%= coincidence_rate(@question.answer, @vote) %>%</strong> de los usuarios que han votado!</p>                
+              <% else %>
+                <p>¡El <strong><%= @question.answer.rate %>%</strong> de los usuarios consideran la respuesta completa!</p>             
+              <% end %>
+              </div> 
               <!--http://code.google.com/apis/chart/docs/gallery/pie_charts.html-->
               <p class="chart-api-google"><%= google_chart(@question.answer)%></p>
             <% end %>

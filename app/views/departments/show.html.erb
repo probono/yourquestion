@@ -1,0 +1,24 @@
+<div class="content frame">
+
+<div class="section-01">
+  <div class="question column-01 toLeft">
+    <h1><%= link_to @department.administration.name, @department.administration %> / <%= @department.name %></h1>
+    <p><%= @department.description %></p>
+  </div>
+  <!--/question-->
+  <div class="people column-02 toRight">
+    <p class="number-people"><em><span><%= @department.questions.sent.size %></span> preguntas enviadas, <span><%= @department.questions.answered.size %></span> contestadas</em></p>
+    
+    <p class="accessible">Estadística de <%= administration_link(@department.administration) %>:</p>
+      <p>El tiempo medio de respuesta de <%= administration_link(@department.administration) %> es de <span><%= @department.administration.average_response_time %> días</span></p>
+      <p>La media general está en <span><%= average_response_time %> días</span></p>
+    
+  </div>
+  <!--/people-->
+  <div class="clear"></div>
+</div>
+<!--/section-01-->
+
+<%= render :partial => '/questions/list', :locals => {:questions => @department.questions.sent}%>
+
+</div>

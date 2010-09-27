@@ -4,7 +4,8 @@ Yourquestion::Application.routes.draw do |map|
   match 'questions/:question_id/answer/:id/ok' => 'answers#vote', :defaults => { :vote => '1' }, :as => :complete_answer
   match 'questions/:question_id/answer/:id/ough' => 'answers#vote', :defaults => { :vote => nil }, :as => :uncomplete_answer
   
-  match 'questions/tag/:tag' => 'questions#by_tag', :as => :questions_by_tag
+  match 'questions/search' => 'search#search', :as => :search
+  match 'questions/tag/:tag' => 'search#by_tag', :as => :questions_by_tag
   
   resources :questions, :only => [:new, :create, :show] do
     get :pending, :on => :collection
@@ -12,9 +13,9 @@ Yourquestion::Application.routes.draw do |map|
     get :me_too, :on => :member
   end
 
-  resources :departments, :only => [:show]
-
-  resources :administrations, :only => [:show]
+  resources :administrations, :only => [:show] do
+      resources :departments, :only => [:show]
+  end
   
   namespace :admin do
     resources :questions do 

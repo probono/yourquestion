@@ -1,3 +1,18 @@
+# == Schema Info
+#
+# Table name: votes
+#
+#  id           :integer         not null, primary key
+#  answer_id    :integer
+#  session_id   :string(255)
+#  ip           :string(255)
+#  positive     :boolean
+#  referer      :string(255)
+#  request_hash :string(255)
+#  user_agent   :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
