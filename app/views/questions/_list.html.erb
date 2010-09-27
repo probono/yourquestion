@@ -1,0 +1,32 @@
+<div class="section-02 answer-yes">
+  <div class="answer">
+    <div class="column-01 toLeft">
+      <div class="title-answer toLeft">
+        <h2>Preguntas</h2>
+      </div>
+      <div class="clear"></div>
+
+          <table>
+            <tr>
+              <th>Title</th>
+              <th>Sent at</th>
+              <th>Answered at</th>
+            </tr>
+
+          <% questions.each do |question| %>
+            <tr>
+              <td><%= link_to question.title, question %></td>
+              <td><%= question.sent_at %></td>
+              <td><%= question.answered_at %></td>
+            </tr>
+          <% end %>
+          </table>
+
+    </div>
+    <!--/feedback-->
+    <div class="clear"></div>
+  </div>
+  <!--/answer-->
+</div>
+<!--/section-02-->
+

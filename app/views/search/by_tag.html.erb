@@ -1,0 +1,18 @@
+<div class="frame">
+  <div class="results-available">
+    <h1><%= @questions.total_entries %> Resultados disponibles</h1>
+    <% @questions.each do |q|%>
+      <h2 class="no-border"><%= link_to q.title, q %></h2>
+      <p><%=administration_logo(q.administration)%> <%= "<strong>Contestada hace #{time_ago_in_words(q.answered_at)}:</strong>" if q.answered?%> <%= truncate_html(q.body, 300)%> <%= link_to "Leer más", q %></p>
+    <% end %>
+  </div>
+  <div class="page-navigation">
+    <p><%= raw page_entries_info(@questions) %></p>
+    <%= raw will_paginate @questions %>
+    <div class="clear"></div>
+  </div>
+  <div class="send-question">
+    <h2>Envia tu pregunta a la administración</h2>
+    <p>Si tu pregunta no está contestada, <%= link_to "puedes enviar una nueva", new_question_path %></p>
+  </div>
+</div>
